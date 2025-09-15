@@ -20,9 +20,9 @@ setupSwagger(app); // Configura Swagger
 
 const BASE_PATH = "/api";
 // Auth API
-const PATH_SIGNUP = "/signup";
-const PATH_LOGIN = "/login";
-const PATH_LOGOUT = "/logout";
+const PATH_SIGNUP = "/auth/signup";
+const PATH_LOGIN = "/auth/login";
+const PATH_LOGOUT = "/auth/logout";
 const FULL_PATH_SIGNUP = BASE_PATH + PATH_SIGNUP;
 const FULL_PATH_LOGIN = BASE_PATH + PATH_LOGIN;
 const FULL_PATH_LOGOUT = BASE_PATH + PATH_LOGOUT;
