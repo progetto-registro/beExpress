@@ -3,9 +3,10 @@ import fs from "fs";
 import dayjs from "dayjs";
 import path from "path";
 import { UserInfo } from "../../types";
-import { capitalizePhrase, isAnnoBisestile } from "../../utils";
+import { capitalizePhrase, COOKIE_NAME, encrypt, isAnnoBisestile, setSessionCookie, updateCookieExpiration } from "../../utils";
 
 export const signup = async (req: Request<{}, {}, UserInfo>, res: Response): Promise<void> => {
+  let sessionCookie = req.cookies[COOKIE_NAME];
   const { nome, cognome, sesso, dataNascita, cf, mail, username, password } = req.body;
 
   if (nome != null && cognome != null && sesso != null && dataNascita != null && cf != null && mail != null && username != null && password != null) {
@@ -81,7 +82,14 @@ export const signup = async (req: Request<{}, {}, UserInfo>, res: Response): Pro
 
           // Salvo le credenziali solo se la creazione della cartella e dei file ha avuto buon fine
           fs.writeFileSync(fileUtenti, JSON.stringify(utenti, null, 2), "utf-8");
-          res.status(200).send("Utente salvato correttamente");
+
+          // Verifico la presenza di cookie di sessione. Se presente ne aggiorno la scadenza, se assente lo creo
+          if (!sessionCookie) {
+            sessionCookie = encrypt(nuovoUtente.cf); // Cripta il codice fiscale utente
+            setSessionCookie(res, sessionCookie);
+          } else updateCookieExpiration(req, res);
+
+          res.status(200).send(nuovoUtente);
         } catch (err) {
           console.error(err);
           res.status(500).send("Impossibile registrare il nuovo utente a sistema");
@@ -148,7 +156,47 @@ export const signup = async (req: Request<{}, {}, UserInfo>, res: Response): Pro
  *       required: true
  *     responses:
  *       200:
- *         description: Utente aggiunto a sistema con successo
+ *         description: Informazioni dell'utente registrato con successo a sistema
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 nome:
+ *                   type: string
+ *                   description: Il nome della persona registrata
+ *                   example: Pippo
+ *                 cognome:
+ *                   type: string
+ *                   description: Il cognome della persona registrata
+ *                   example: Baudo
+ *                 dataNascita:
+ *                   type: string
+ *                   description: La data di nascita della persona registrata
+ *                   format: date
+ *                   example: 07/06/1936
+ *                 sesso:
+ *                   type: string
+ *                   description: Il sesso della persona registrata
+ *                   enum: [M, F]
+ *                   example: M
+ *                 cf:
+ *                   type: string
+ *                   description: Il codice fiscale della persona registrata
+ *                   example: BDAPPP36H07C351U
+ *                 mail:
+ *                   type: string
+ *                   description: L'indirizzo email della persona registrata
+ *                   example: pippobaudo@gmail.com
+ *                 username:
+ *                   type: string
+ *                   description: L'username della persona registrata
+ *                   example: pippo
+ *                 password:
+ *                   type: string
+ *                   description: La password della persona registrata
+ *                   example: baudo
+ *         required: true
  *       400:
  *         description: Campi mancanti o mal formattati
  *       500:

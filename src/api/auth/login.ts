@@ -23,7 +23,7 @@ export const login = async (req: Request<{}, {}, LoginRequest>, res: Response<Us
 
       // Verifico la presenza di cookie di sessione. Se presente ne aggiorno la scadenza, se assente lo creo
       if (!sessionCookie) {
-        const sessionCookie = encrypt(utenteLoggato.cf); // Cripta il codice fiscale utente
+        sessionCookie = encrypt(utenteLoggato.cf); // Cripta il codice fiscale utente
         setSessionCookie(res, sessionCookie);
       } else updateCookieExpiration(req, res);
       res.status(200).json(utenteLoggato);
