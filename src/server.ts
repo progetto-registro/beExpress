@@ -1,11 +1,9 @@
 import express, { Request, Response, NextFunction } from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import { signup } from "./api/auth/signup";
-import { login } from "./api/auth/login";
-import { logout } from "./api/auth/logout";
 import { setupSwagger } from "./swagger"; // Importa la configurazione di Swagger
 import { COOKIE_NAME } from "./utils";
+import { signup, login, logout, modificaUtente } from "./api/auth";
 import { getStudenti, nuovoStudente, modificaStudente, eliminaStudente } from "./api/studenti";
 import { getLezioni, nuovaLezione, modificaLezione, eliminaLezione } from "./api/lezioni";
 
@@ -23,9 +21,11 @@ const BASE_PATH = "/api";
 const PATH_SIGNUP = "/auth/signup";
 const PATH_LOGIN = "/auth/login";
 const PATH_LOGOUT = "/auth/logout";
+const PATH_MODIFICA_UTENTE = "/auth/modifica";
 const FULL_PATH_SIGNUP = BASE_PATH + PATH_SIGNUP;
 const FULL_PATH_LOGIN = BASE_PATH + PATH_LOGIN;
 const FULL_PATH_LOGOUT = BASE_PATH + PATH_LOGOUT;
+const FULL_PATH_MODIFICA_UTENTE = BASE_PATH + PATH_MODIFICA_UTENTE;
 // Studenti API
 const PATH_STUDENTI = "/studenti";
 const FULL_PATH_STUDENTI = BASE_PATH + PATH_STUDENTI;
@@ -59,6 +59,7 @@ app.use("/api", (req: Request, res: Response, next: NextFunction) => {
 app.put(FULL_PATH_SIGNUP, signup);
 app.post(FULL_PATH_LOGIN, login);
 app.get(FULL_PATH_LOGOUT, logout);
+app.post(FULL_PATH_MODIFICA_UTENTE, modificaUtente);
 // Studenti API
 app.get(FULL_PATH_STUDENTI, getStudenti);
 app.put(FULL_PATH_NUOVO_STUDENTE, nuovoStudente);
