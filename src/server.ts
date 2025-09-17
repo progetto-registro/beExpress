@@ -45,6 +45,28 @@ const FULL_PATH_MODIFICA_LEZIONE = BASE_PATH + PATH_MODIFICA_LEZIONE;
 const PATH_ELIMINA_LEZIONE = "/lezioni/elimina";
 const FULL_PATH_ELIMINA_LEZIONE = BASE_PATH + PATH_ELIMINA_LEZIONE;
 
+// Middleware per controllare che l'api sia presente
+app.use((req: Request, res: Response, next: NextFunction) => {
+  if (
+    ![
+      FULL_PATH_SIGNUP,
+      FULL_PATH_LOGIN,
+      FULL_PATH_LOGOUT,
+      FULL_PATH_MODIFICA_UTENTE,
+      FULL_PATH_STUDENTI,
+      FULL_PATH_NUOVO_STUDENTE,
+      FULL_PATH_MODIFICA_STUDENTE,
+      FULL_PATH_ELIMINA_STUDENTE,
+      FULL_PATH_LEZIONI,
+      FULL_PATH_NUOVA_LEZIONE,
+      FULL_PATH_MODIFICA_LEZIONE,
+      FULL_PATH_ELIMINA_LEZIONE,
+    ].includes(req.path)
+  )
+    return res.status(404).send(req.path + " non è presente fra le api disponibili");
+  next();
+});
+
 // Middleware di protezione per tutte le rotte sotto /api
 app.use("/api", (req: Request, res: Response, next: NextFunction) => {
   const sessionCookie = req.cookies[COOKIE_NAME] ?? null;
