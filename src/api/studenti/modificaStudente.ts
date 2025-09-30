@@ -51,7 +51,7 @@ export const modificaStudente = async (req: Request<{}, {}, Studente>, res: Resp
         let studenti: Studente[] = JSON.parse(fileContent);
 
         // Controllo che lo studente sia presente a sistema
-        if (studenti.find((studente: Studente) => studente.cf === cf.trim().toUpperCase()) != null) {
+        if (studenti.find((studente: Studente) => studente.cf === cf.trim().toUpperCase()) == null) {
           res.status(400).send("Non è presente a sistema nessuno studente con il codice fiscale inserito");
           return;
         }
