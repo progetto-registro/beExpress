@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "nome": "Pippo",
+    "cognome": "Baudo",
+    "dataNascita": "07/06/1936",
+    "sesso": "M",
+    "cf": "BDAPPP36H07C351U",
+    "mail": "pippobaudo@gmail.com",
+    "username": "pippo",
+    "password": "baudo"
+  },
+  {
+    "nome": "Pippo",
+    "cognome": "Baudo",
+    "dataNascita": "07/06/1936",
+    "sesso": "M",
+    "cf": "BDBPPP36H07C351U",
+    "mail": "pippobaudo@gmail.com",
+    "username": "pippo",
+    "password": "baudo"
+  }
+]
