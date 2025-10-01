@@ -1,5 +1,6 @@
 [
   {
+<<<<<<< Updated upstream
     "nome": "Pippo",
     "cognome": "Baudo",
     "dataNascita": "07/06/1936",
@@ -18,5 +19,35 @@
     "mail": "pippobaudo@gmail.com",
     "username": "pippo",
     "password": "baudo"
+=======
+    "nome": "Totorina",
+    "cognome": "Localcricetino",
+    "dataNascita": "04/12/1997",
+    "sesso": "M",
+    "cf": "BNVNDR97B08D969C",
+    "mail": "to@to.it",
+    "username": "username",
+    "password": "Cazz0vuo!0"
+  },
+  {
+    "nome": "Gallardo",
+    "cognome": "Gallardo",
+    "dataNascita": "08/09/1996",
+    "sesso": "F",
+    "cf": "BNVNDR97H08D968F",
+    "mail": "oscar@gallardo.con",
+    "username": "oscar",
+    "password": "lalalalaL1!"
+  },
+  {
+    "nome": "Ehbj",
+    "cognome": "Ervhj",
+    "dataNascita": "12/12/2000",
+    "sesso": "M",
+    "cf": "BNVNDR97B08D969L",
+    "mail": "lo@lo.xom",
+    "username": "lol",
+    "password": "C@cacaca1"
+>>>>>>> Stashed changes
   }
 ]
