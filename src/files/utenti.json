@@ -1,6 +1,7 @@
 [
   {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "nome": "Pippo",
     "cognome": "Baudo",
     "dataNascita": "07/06/1936",
@@ -20,6 +21,8 @@
     "username": "pippo",
     "password": "baudo"
 =======
+=======
+>>>>>>> Stashed changes
     "nome": "Totorina",
     "cognome": "Localcricetino",
     "dataNascita": "04/12/1997",
@@ -48,6 +51,9 @@
     "mail": "lo@lo.xom",
     "username": "lol",
     "password": "C@cacaca1"
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   }
 ]
